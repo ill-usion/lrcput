@@ -1,36 +1,35 @@
-# Audio Lyrics Embedding Script (lrcput.py)
+# Audio Lyrics Fetching and Embedding Script (lrcput.py)
 
-The `lrcput.py` script allows you to embed LRC (Lyrics) files into both FLAC, M4A and MP3 audio files. It supports specifying a directory containing the audio files and their corresponding LRC files with the same name.
+The `lrcput.py` script allows you to embed lyrics into FLAC, M4A and MP3 audio files. It supports specifying a directory containing the audio files and subdirectories containing audio files.
 
-**this script was designed to embed lyrics acquired from [lrcget](https://github.com/tranxuanthang/lrcget)**
+**this script was designed to embed lyrics acquired from [lrclib](https://lrclib.net)**
 
 ## Requirements
 
 - Python 3.x
-- Required Python libraries (install using `pip install`):
-  - mutagen
+- Required Python libraries (install using `pip install` or `pip install -r requirements.txt`):
+  - requests
+  - urllib3
   - eyed3
-  - tqdm (for progress bar)
+  - mutagen
+  - tqdm
 
 ## Usage
 
-1. Place your audio files (FLAC or M4A or MP3) and their corresponding LRC files in the same directory.
+1. Open a terminal or command prompt.
 
-2. Open a terminal or command prompt.
+2. Navigate to the directory where the script `lrcput.py` is located.
 
-3. Navigate to the directory where the script `lrcput.py` is located.
-
-4. Run the script with the following command to embed LRC files and optionally reduce (delete) them:
+3. Run the script with the following command to fetch and embed lyrics:
 
    ```sh
-   python lrcput.py -d "path/to/your/directory" -s -r
+   python lrcput.py -d "path/to/your/directory" -s -R
    ```
 
 Replace "path/to/your/directory" with the actual path to the directory containing your audio and LRC files.
 
     -d or --directory: Specify the directory containing audio files and LRC files.
     -s or --skip: Optional. Skip files that already have embedded lyrics.
-    -r or --reduce: Optional. Reduce (delete) LRC files after embedding.
     -R or --recursive: Optional. Recursively process subdirectories
 
 ## Example
@@ -39,23 +38,22 @@ Suppose you have the following directory structure:
 
 ```audio_directory/
 |-- song1.flac
-|-- song1.lrc
 |-- song2.mp3
-|-- song2.lrc
 |-- song3.m4a
-|-- song3.lrc
+|-- More music
+    |-- song4.flac
+    |-- song5.flac
+    |-- ...
 |-- ...
 ```
 
-To embed LRC files into the audio files and delete them after embedding, navigate to the script's directory and run the following command:
+To embed lyrics into the audio files, navigate to the script's directory and run the following command:
 
 ```
-python lrcput.py -d "path/to/audio_directory" -s -r
+python lrcput.py -d "path/to/audio_directory" -s -R
 ```
 
 ## Notes
-
-- The LRC files should have the same name astheir corresponding audio files, but with a .lrc extension.
 
 - You can modify the script's options andbehavior by editing the script directly.
 
@@ -63,4 +61,4 @@ python lrcput.py -d "path/to/audio_directory" -s -r
 
 ## Acknowledgments
 
-This script utilizes the mutagen and eyed3 libraries for working with audio and metadata.
+This script utilizes the mutagen and eyed3 libraries for working with audio and metadata. Additionally, it utilizes [lrclib](https://lrclib.net) to fetch the lyrics.
