@@ -26,9 +26,9 @@ The `lrcput.py` script allows you to embed lyrics into FLAC, M4A and MP3 audio f
    python lrcput.py -d "path/to/your/directory" -s -R
    ```
 
-Replace "path/to/your/directory" with the actual path to the directory containing your audio and LRC files.
+Replace "path/to/your/directory" with the actual path to the directory containing your audio files.
 
-    -d or --directory: Specify the directory containing audio files and LRC files.
+    -d or --directory: Specify the directory containing audio files.
     -s or --skip: Optional. Skip files that already have embedded lyrics.
     -R or --recursive: Optional. Recursively process subdirectories
 
