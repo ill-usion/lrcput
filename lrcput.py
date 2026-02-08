@@ -1,4 +1,5 @@
 import os
+import sys
 import eyed3
 import shutil
 import argparse
@@ -13,8 +14,15 @@ LRCPUT_VERSION = "0.1.1"
 
 def md5_checksum(filepath):
     with open(filepath, "rb") as file:
-        digest = hashlib.file_digest(file, "md5")
-        return digest.hexdigest()
+        if sys.version_info.major == 3 and sys.version_info.minor >= 11:
+                digest = hashlib.file_digest(file, "md5")
+                return digest.hexdigest()
+        else:
+            h = hashlib.md5()
+            for chunk in iter(lambda: file.read(128 * 1024), b''):
+                h.update(chunk)
+    
+            return h.hexdigest()
 
 def get_checked_hashes(hashes_filepath):
     try:
