@@ -31,6 +31,7 @@ Replace "path/to/your/directory" with the actual path to the directory containin
     -d or --directory: Specify the directory containing audio files.
     -s or --skip: Optional. Skip files that already have embedded lyrics.
     -R or --recursive: Optional. Recursively process subdirectories
+    -i or --ignore-hashed: On by default. Skip already processed/hashed files. Good for re-running the script on the same directory with new files.
 
 ## Example
 
@@ -59,6 +60,7 @@ python lrcput.py -d "path/to/audio_directory" -s -R
 
 - Make sure to backup your original audiofiles before running the script.
 
+- To clear the hashed files list, delete the `.lrcput-hash` file in the script directory. You may need to enable show hidden files in your file explorer.  
 ## Acknowledgments
 
 This script utilizes the mutagen and eyed3 libraries for working with audio and metadata. Additionally, it utilizes [lrclib](https://lrclib.net) to fetch the lyrics.
