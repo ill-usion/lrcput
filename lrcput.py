@@ -76,8 +76,6 @@ def embed_lrc(directory, skip_existing, recursive, ignore_cached):
                 pbar.update(1)
                 continue
             
-            append_filename(FILENAMES_PATH, audio_path)
-
             try:
                 audio = None
                 if file.endswith('.flac'):
@@ -111,8 +109,9 @@ def embed_lrc(directory, skip_existing, recursive, ignore_cached):
                     pbar.update(1)
                     continue
 
-            lyrics = fetch_lyrics(track_name, artist_name, album_name, duration)
+            append_filename(FILENAMES_PATH, audio_path)
             
+            lyrics = fetch_lyrics(track_name, artist_name, album_name, duration)
             if not lyrics:
                 pbar.set_postfix({"status": "skipped: lyrics not found"})
                 pbar.update(1)
